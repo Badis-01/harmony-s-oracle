@@ -1,5 +1,5 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { Sparkles, Moon, Star, Compass, Eye, Flame } from 'lucide-react';
+import { Sparkles, Moon, Star, Compass, Eye, Flame, CloudMoon, Brain, Heart, Zap } from 'lucide-react';
 
 const services = [
   { icon: Sparkles, title: 'Tarotové karty', description: 'Klasické výklady pro jasné odpovědi' },
@@ -15,6 +15,13 @@ const services = [
   { icon: Compass, title: 'Runy', description: 'Prastaré symboly moudrosti' },
   { icon: Eye, title: 'Křišťálová koule', description: 'Nahlédněte do budoucnosti' },
   { icon: Flame, title: 'Svíčková magie', description: 'Rituály pro splnění přání' },
+];
+
+const bentoServices = [
+  { title: 'Výklad snů', icon: CloudMoon, color: 'from-indigo-500/20' },
+  { title: 'Regrese', icon: Brain, color: 'from-purple-500/20' },
+  { title: 'Channeling', icon: Zap, color: 'from-amber-500/20' },
+  { title: 'Reiki', icon: Heart, color: 'from-emerald-500/20' },
 ];
 
 export const ServicesSection = () => {
@@ -50,7 +57,7 @@ export const ServicesSection = () => {
                   {/* Icon with glow */}
                   <div className="relative mb-4">
                     <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cosmic-glow to-cosmic-surface flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <service.icon className="w-8 h-8 text-gold-warm" />
+                      <service.icon className="w-8 h-8 text-gold-warm" strokeWidth={1.5} />
                     </div>
                     {/* Glow effect */}
                     <div className="absolute inset-0 w-16 h-16 rounded-2xl bg-gold-warm/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -68,19 +75,16 @@ export const ServicesSection = () => {
         </div>
       </ScrollReveal>
 
-      {/* Bento Grid for additional services */}
+      {/* Bento Grid for additional services - with Lucide icons */}
       <div className="container mx-auto px-6 relative z-10 mt-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { title: 'Výklad snů', icon: '🌙', color: 'from-indigo-500/20' },
-            { title: 'Regrese', icon: '🔮', color: 'from-purple-500/20' },
-            { title: 'Channeling', icon: '✨', color: 'from-amber-500/20' },
-            { title: 'Reiki', icon: '🙏', color: 'from-emerald-500/20' },
-          ].map((item, index) => (
+          {bentoServices.map((item, index) => (
             <ScrollReveal key={index} delay={300 + index * 50}>
               <div className={`glass-card p-6 text-center cursor-pointer group hover:border-gold-warm/50 transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br ${item.color} to-transparent`}>
-                <span className="text-3xl mb-3 block group-hover:scale-110 transition-transform duration-300">{item.icon}</span>
-                <span className="font-heading text-sm text-moon-white">{item.title}</span>
+                <div className="relative inline-block mb-3">
+                  <item.icon className="w-8 h-8 text-gold-warm group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+                </div>
+                <span className="font-heading text-sm text-moon-white block">{item.title}</span>
               </div>
             </ScrollReveal>
           ))}

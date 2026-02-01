@@ -1,4 +1,4 @@
-import { Sparkles, Phone, Mail, MapPin, Star } from 'lucide-react';
+import { Sparkles, Phone, Mail, MapPin, Star, Facebook, Instagram, Twitter, Youtube, CreditCard, Smartphone } from 'lucide-react';
 
 export const Footer = () => {
   return (
@@ -26,7 +26,7 @@ export const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <Sparkles className="w-7 h-7 text-gold-warm" />
+              <Sparkles className="w-7 h-7 text-gold-warm" strokeWidth={1.5} />
               <span className="font-heading text-2xl text-moon-white">Věštírna Harmonie</span>
             </div>
             <p className="font-body text-sm text-mystic-blue leading-relaxed mb-6">
@@ -36,7 +36,7 @@ export const Footer = () => {
             <div className="flex items-center gap-2">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-gold-warm text-gold-warm" />
+                  <Star key={i} className="w-4 h-4 fill-gold-warm text-gold-warm" strokeWidth={1.5} />
                 ))}
               </div>
               <span className="font-body text-sm text-mystic-blue">4.9/5 (2,847 recenzí)</span>
@@ -79,7 +79,7 @@ export const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 group">
                 <div className="w-10 h-10 rounded-lg glass-card flex items-center justify-center group-hover:border-gold-warm/50 transition-colors duration-300">
-                  <Phone className="w-4 h-4 text-gold-warm" />
+                  <Phone className="w-4 h-4 text-gold-warm" strokeWidth={2} />
                 </div>
                 <div>
                   <span className="font-body text-sm text-moon-white">+420 123 456 789</span>
@@ -88,13 +88,13 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-3 group">
                 <div className="w-10 h-10 rounded-lg glass-card flex items-center justify-center group-hover:border-gold-warm/50 transition-colors duration-300">
-                  <Mail className="w-4 h-4 text-gold-warm" />
+                  <Mail className="w-4 h-4 text-gold-warm" strokeWidth={2} />
                 </div>
                 <span className="font-body text-sm text-mystic-blue">info@vestirnharmonie.cz</span>
               </li>
               <li className="flex items-center gap-3 group">
                 <div className="w-10 h-10 rounded-lg glass-card flex items-center justify-center group-hover:border-gold-warm/50 transition-colors duration-300">
-                  <MapPin className="w-4 h-4 text-gold-warm" />
+                  <MapPin className="w-4 h-4 text-gold-warm" strokeWidth={2} />
                 </div>
                 <span className="font-body text-sm text-mystic-blue">Praha, Česká republika</span>
               </li>
@@ -108,25 +108,40 @@ export const Footer = () => {
             © 2026 Věštírna Harmonie. Všechna práva vyhrazena.
           </p>
           
-          {/* Social links */}
-          <div className="flex gap-4">
-            {['Facebook', 'Instagram', 'Twitter', 'YouTube'].map((social) => (
+          {/* Social links with Lucide icons */}
+          <div className="flex gap-3">
+            {[
+              { icon: Facebook, label: 'Facebook' },
+              { icon: Instagram, label: 'Instagram' },
+              { icon: Twitter, label: 'Twitter' },
+              { icon: Youtube, label: 'YouTube' },
+            ].map((social) => (
               <a
-                key={social}
+                key={social.label}
                 href="#"
                 className="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-mystic-blue/50 hover:text-gold-warm hover:border-gold-warm/50 transition-all duration-300"
+                aria-label={social.label}
               >
-                <span className="text-xs font-body">{social[0]}</span>
+                <social.icon className="w-4 h-4" strokeWidth={2} />
               </a>
             ))}
           </div>
           
-          {/* Payment methods hint */}
-          <div className="flex items-center gap-2 text-mystic-blue/30 text-xs font-body">
-            <span>Bezpečné platby:</span>
-            <span>💳 Visa</span>
-            <span>💳 Mastercard</span>
-            <span>📱 Apple Pay</span>
+          {/* Payment methods with icons */}
+          <div className="flex items-center gap-3 text-mystic-blue/40">
+            <span className="text-xs font-body">Bezpečné platby:</span>
+            <div className="flex items-center gap-2">
+              <CreditCard className="w-5 h-5" strokeWidth={1.5} />
+              <span className="text-xs font-body">Visa</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CreditCard className="w-5 h-5" strokeWidth={1.5} />
+              <span className="text-xs font-body">Mastercard</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Smartphone className="w-5 h-5" strokeWidth={1.5} />
+              <span className="text-xs font-body">Apple Pay</span>
+            </div>
           </div>
         </div>
       </div>

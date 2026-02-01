@@ -142,31 +142,40 @@ export const AdvisorsSection = () => {
           </div>
         </ScrollReveal>
 
-        {/* Toggle Switch */}
+        {/* Toggle Switch - Clean Pill Style */}
         <ScrollReveal delay={100}>
           <div className="flex justify-center mb-12">
-            <div className="inline-flex glass-card p-1.5 gap-1">
+            <div className="relative inline-flex rounded-full bg-cosmic-surface/50 backdrop-blur-sm border border-white/10 p-1">
+              {/* Animated background pill */}
+              <div 
+                className={`absolute top-1 h-[calc(100%-8px)] w-[calc(50%-4px)] rounded-full transition-all duration-300 ease-out ${
+                  mode === 'call' 
+                    ? 'left-1 bg-gradient-to-r from-gold-warm to-amber-400 shadow-gold' 
+                    : 'left-[calc(50%+2px)] bg-gradient-to-r from-purple-electric to-violet-500 shadow-purple'
+                }`}
+              />
+              
               <button
                 onClick={() => setMode('call')}
-                className={`flex items-center gap-2 px-8 py-4 rounded-lg font-body font-semibold text-base transition-all duration-300 ${
+                className={`relative z-10 flex items-center gap-2.5 px-8 py-3.5 rounded-full font-body font-semibold text-sm transition-all duration-300 ${
                   mode === 'call'
-                    ? 'bg-gradient-to-r from-gold-warm to-amber-400 text-cosmic-deep shadow-gold'
+                    ? 'text-cosmic-deep'
                     : 'text-mystic-blue hover:text-moon-white'
                 }`}
               >
-                <Phone className="w-5 h-5" />
-                📞 Volat
+                <Phone className="w-4 h-4" strokeWidth={2} />
+                Volat
               </button>
               <button
                 onClick={() => setMode('chat')}
-                className={`flex items-center gap-2 px-8 py-4 rounded-lg font-body font-semibold text-base transition-all duration-300 ${
+                className={`relative z-10 flex items-center gap-2.5 px-8 py-3.5 rounded-full font-body font-semibold text-sm transition-all duration-300 ${
                   mode === 'chat'
-                    ? 'bg-gradient-to-r from-purple-electric to-violet-500 text-moon-white shadow-purple'
+                    ? 'text-moon-white'
                     : 'text-mystic-blue hover:text-moon-white'
                 }`}
               >
-                <MessageCircle className="w-5 h-5" />
-                💬 Chat
+                <MessageCircle className="w-4 h-4" strokeWidth={2} />
+                Chat
               </button>
             </div>
           </div>

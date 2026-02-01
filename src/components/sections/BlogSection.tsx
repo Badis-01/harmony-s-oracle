@@ -1,5 +1,5 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { ArrowRight, Clock, User } from 'lucide-react';
+import { ArrowRight, Clock, User, Sparkles, Moon, Star } from 'lucide-react';
 
 const articles = [
   {
@@ -10,6 +10,8 @@ const articles = [
     date: '28. 1. 2026',
     readTime: '5 min',
     author: 'Madame Helena',
+    icon: Sparkles,
+    gradient: 'from-purple-600/40 via-violet-500/30 to-indigo-600/40',
   },
   {
     id: 2,
@@ -19,6 +21,8 @@ const articles = [
     date: '25. 1. 2026',
     readTime: '7 min',
     author: 'Eva Mystická',
+    icon: Star,
+    gradient: 'from-emerald-600/40 via-teal-500/30 to-cyan-600/40',
   },
   {
     id: 3,
@@ -28,6 +32,8 @@ const articles = [
     date: '22. 1. 2026',
     readTime: '4 min',
     author: 'Kristýna Světlá',
+    icon: Moon,
+    gradient: 'from-blue-600/40 via-indigo-500/30 to-purple-600/40',
   },
 ];
 
@@ -60,10 +66,10 @@ export const BlogSection = () => {
           {articles.map((article, index) => (
             <ScrollReveal key={article.id} delay={index * 100}>
               <article className="glass-card glass-card-hover group cursor-pointer overflow-hidden h-full flex flex-col">
-                {/* Image placeholder with gradient */}
-                <div className="h-52 bg-gradient-to-br from-cosmic-glow via-cosmic-surface to-purple-electric/20 relative overflow-hidden">
-                  {/* Decorative pattern */}
-                  <div className="absolute inset-0 opacity-20">
+                {/* Image with gradient and icon */}
+                <div className={`h-52 bg-gradient-to-br ${article.gradient} relative overflow-hidden`}>
+                  {/* Decorative pattern - sacred geometry */}
+                  <div className="absolute inset-0 opacity-30">
                     <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
                       {[...Array(5)].map((_, i) => (
                         <circle
@@ -77,10 +83,29 @@ export const BlogSection = () => {
                           className="text-gold-warm"
                         />
                       ))}
+                      {/* Additional decorative elements */}
+                      <path
+                        d="M20,80 L40,60 L60,80 L40,100 Z"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="0.3"
+                        className="text-moon-white"
+                      />
                     </svg>
                   </div>
                   
-                  {/* Gradient overlay */}
+                  {/* Central icon with glow */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="relative">
+                      <div className="absolute inset-0 w-20 h-20 -m-2 bg-gold-warm/20 rounded-full blur-xl group-hover:bg-gold-warm/30 transition-all duration-500" />
+                      <article.icon className="relative w-16 h-16 text-gold-warm/80 group-hover:text-gold-warm group-hover:scale-110 transition-all duration-500" strokeWidth={1} />
+                    </div>
+                  </div>
+
+                  {/* Zoom effect overlay */}
+                  <div className="absolute inset-0 bg-cosmic-deep/0 group-hover:bg-cosmic-deep/10 transition-all duration-300" />
+                  
+                  {/* Gradient overlay for text */}
                   <div className="absolute inset-0 bg-gradient-to-t from-cosmic-deep via-transparent to-transparent" />
                   
                   {/* Category badge */}
@@ -95,12 +120,12 @@ export const BlogSection = () => {
                 <div className="p-6 flex flex-col flex-grow">
                   {/* Meta */}
                   <div className="flex items-center gap-4 text-xs text-mystic-blue/70 mb-3">
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5" strokeWidth={2} />
                       {article.readTime}
                     </span>
-                    <span className="flex items-center gap-1">
-                      <User className="w-3 h-3" />
+                    <span className="flex items-center gap-1.5">
+                      <User className="w-3.5 h-3.5" strokeWidth={2} />
                       {article.author}
                     </span>
                   </div>
@@ -115,7 +140,7 @@ export const BlogSection = () => {
                   {/* Read more link */}
                   <div className="flex items-center gap-2 text-gold-warm font-body text-sm font-medium group-hover:gap-4 transition-all duration-300">
                     Číst více
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4" strokeWidth={2} />
                   </div>
                 </div>
               </article>
