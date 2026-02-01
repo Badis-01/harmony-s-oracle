@@ -1,25 +1,47 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 export const CosmicBackground = () => {
   const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; delay: number }>>([]);
+  const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
 
   useEffect(() => {
-    const generatedStars = Array.from({ length: 100 }, () => ({
+    const generatedStars = Array.from({ length: 120 }, () => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 2 + 0.5,
+      size: Math.random() * 2.5 + 0.5,
       delay: Math.random() * 5,
     }));
     setStars(generatedStars);
   }, []);
+
+  // Mouse parallax handler
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+    setMousePosition({ x, y });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [handleMouseMove]);
+
+  // Calculate parallax offset (opposite direction for depth)
+  const parallaxX = (mousePosition.x - 0.5) * -30;
+  const parallaxY = (mousePosition.y - 0.5) * -30;
 
   return (
     <>
       {/* Noise texture overlay */}
       <div className="noise-overlay" />
 
-      {/* Starfield */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Starfield with parallax */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-transform duration-700 ease-out"
+        style={{
+          transform: `translate(${parallaxX}px, ${parallaxY}px)`,
+        }}
+      >
         {stars.map((star, i) => (
           <div
             key={i}
@@ -36,8 +58,13 @@ export const CosmicBackground = () => {
         ))}
       </div>
 
-      {/* Sacred Geometry - Mandala SVG */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-[0.03]">
+      {/* Sacred Geometry - Mandala SVG with parallax */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-[0.03] transition-transform duration-1000 ease-out"
+        style={{
+          transform: `translate(${parallaxX * 0.5}px, ${parallaxY * 0.5}px)`,
+        }}
+      >
         {/* Large central mandala */}
         <svg
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px]"
@@ -142,8 +169,13 @@ export const CosmicBackground = () => {
         </svg>
       </div>
 
-      {/* Ambient glow orbs */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Ambient glow orbs with parallax */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-transform duration-1500 ease-out"
+        style={{
+          transform: `translate(${parallaxX * 0.3}px, ${parallaxY * 0.3}px)`,
+        }}
+      >
         <div 
           className="absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full opacity-30"
           style={{
@@ -158,6 +190,22 @@ export const CosmicBackground = () => {
             animation: 'float-reverse 25s ease-in-out infinite',
           }}
         />
+      </div>
+
+      {/* Floating dust particles in hero area */}
+      <div className="fixed top-0 left-0 right-0 h-screen pointer-events-none z-0 overflow-hidden">
+        {Array.from({ length: 30 }).map((_, i) => (
+          <div
+            key={`dust-${i}`}
+            className="absolute w-0.5 h-0.5 bg-gold-warm/30 rounded-full"
+            style={{
+              left: `${10 + Math.random() * 80}%`,
+              top: `${10 + Math.random() * 80}%`,
+              animation: `float-dust ${8 + Math.random() * 12}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 5}s`,
+            }}
+          />
+        ))}
       </div>
     </>
   );

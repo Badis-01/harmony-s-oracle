@@ -1,9 +1,73 @@
-import { Sparkles, Phone, Mail, MapPin, Star, Facebook, Instagram, Twitter, Youtube, CreditCard, Smartphone } from 'lucide-react';
+import { Sparkles, Phone, Mail, MapPin, Star, Facebook, Instagram, Twitter, Youtube, CreditCard, Smartphone, Compass } from 'lucide-react';
 
 export const Footer = () => {
   return (
     <footer className="relative py-20 border-t border-border/20 overflow-hidden">
-      {/* Background pattern */}
+      {/* Magical map background */}
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+        {/* Compass rose */}
+        <svg className="absolute top-10 left-10 w-[200px] h-[200px]" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-gold-warm" />
+          <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" strokeWidth="0.3" className="text-gold-warm" />
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
+            const rad = (angle * Math.PI) / 180;
+            return (
+              <line
+                key={angle}
+                x1="50"
+                y1="50"
+                x2={50 + 40 * Math.cos(rad)}
+                y2={50 + 40 * Math.sin(rad)}
+                stroke="currentColor"
+                strokeWidth={angle % 90 === 0 ? '0.5' : '0.2'}
+                className="text-gold-warm"
+              />
+            );
+          })}
+          <text x="50" y="12" textAnchor="middle" className="fill-gold-warm text-[8px] font-heading">N</text>
+          <text x="50" y="95" textAnchor="middle" className="fill-gold-warm text-[8px] font-heading">S</text>
+          <text x="8" y="52" textAnchor="middle" className="fill-gold-warm text-[8px] font-heading">W</text>
+          <text x="92" y="52" textAnchor="middle" className="fill-gold-warm text-[8px] font-heading">E</text>
+        </svg>
+
+        {/* Latitude/longitude grid lines */}
+        <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+          {[...Array(8)].map((_, i) => (
+            <path
+              key={`h-${i}`}
+              d={`M0,${(i + 1) * 12.5}% Q25%,${(i + 1) * 12.5 - 2}% 50%,${(i + 1) * 12.5}% T100%,${(i + 1) * 12.5}%`}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="0.3"
+              className="text-gold-warm"
+            />
+          ))}
+          {[...Array(12)].map((_, i) => (
+            <line
+              key={`v-${i}`}
+              x1={`${(i + 1) * 8}%`}
+              y1="0"
+              x2={`${(i + 1) * 8}%`}
+              y2="100%"
+              stroke="currentColor"
+              strokeWidth="0.2"
+              className="text-purple-electric"
+            />
+          ))}
+        </svg>
+
+        {/* Decorative stars */}
+        {[[80, 20], [90, 60], [15, 80], [70, 90], [30, 30]].map(([x, y], i) => (
+          <Star 
+            key={i}
+            className="absolute text-gold-warm"
+            style={{ left: `${x}%`, top: `${y}%`, width: 12, height: 12 }}
+            strokeWidth={1}
+          />
+        ))}
+      </div>
+
+      {/* Concentric circles pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           {[...Array(8)].map((_, i) => (

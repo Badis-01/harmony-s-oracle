@@ -1,9 +1,39 @@
+import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Star } from 'lucide-react';
+import { Sparkles, Star, Shield } from 'lucide-react';
 import heroMystic from '@/assets/hero-mystic.png';
 import tarotCardBack from '@/assets/tarot-card-back.png';
 
 export const HeroSection = () => {
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  // Split-text stagger animation
+  useEffect(() => {
+    const heading = headingRef.current;
+    if (!heading) return;
+
+    const lines = heading.querySelectorAll('.split-line');
+    lines.forEach((line, lineIndex) => {
+      const text = line.textContent || '';
+      line.textContent = '';
+      
+      [...text].forEach((char, charIndex) => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.className = 'inline-block opacity-0 translate-y-8 transition-all duration-500';
+        span.style.transitionDelay = `${(lineIndex * 10 + charIndex) * 30 + 400}ms`;
+        line.appendChild(span);
+        
+        // Trigger animation
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            span.classList.remove('opacity-0', 'translate-y-8');
+          });
+        });
+      });
+    });
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden section-vignette">
       {/* Hero background with mystic woman - cinematic blend */}
@@ -88,7 +118,7 @@ export const HeroSection = () => {
 
       {/* Magical particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(25)].map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-gold-warm rounded-full"
@@ -111,25 +141,24 @@ export const HeroSection = () => {
             className="inline-flex items-center gap-2 px-5 py-2.5 glass-card mb-8"
             style={{ animation: 'fade-in-up 0.6s ease-out forwards', animationDelay: '0.2s', opacity: 0 }}
           >
-            <Star className="w-4 h-4 text-gold-warm fill-gold-warm" />
+            <Star className="w-4 h-4 text-gold-warm fill-gold-warm" strokeWidth={1.5} />
             <span className="text-sm font-body text-mystic-blue tracking-wide">Profesionální věštění online • 24/7</span>
-            <Star className="w-4 h-4 text-gold-warm fill-gold-warm" />
+            <Star className="w-4 h-4 text-gold-warm fill-gold-warm" strokeWidth={1.5} />
           </div>
 
-          {/* Main heading with GLOW */}
+          {/* Main heading with SPLIT-TEXT ANIMATION */}
           <h1 
+            ref={headingRef}
             className="font-heading text-5xl md:text-7xl lg:text-8xl text-moon-white mb-6 leading-tight text-glow-gold"
-            style={{ animation: 'fade-in-up 0.6s ease-out forwards', animationDelay: '0.4s', opacity: 0 }}
           >
-            ODKRYJTE SVOU
-            <br />
-            <span className="text-gradient-gold">BUDOUCNOST</span>
+            <span className="split-line block">ODKRYJTE SVOU</span>
+            <span className="split-line block text-gradient-gold">BUDOUCNOST</span>
           </h1>
 
           {/* Subtext */}
           <p 
             className="font-body text-lg md:text-xl text-mystic-blue max-w-2xl mx-auto mb-12 leading-relaxed"
-            style={{ animation: 'fade-in-up 0.6s ease-out forwards', animationDelay: '0.6s', opacity: 0 }}
+            style={{ animation: 'fade-in-up 0.6s ease-out forwards', animationDelay: '1.2s', opacity: 0 }}
           >
             Spojte se s ověřenými věštkyněmi a kartářkami. Získejte odpovědi na své nejhlubší otázky prostřednictvím tarotu, astrologie a dalších mystických technik.
           </p>
@@ -137,11 +166,11 @@ export const HeroSection = () => {
           {/* CTA Buttons */}
           <div 
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            style={{ animation: 'fade-in-up 0.6s ease-out forwards', animationDelay: '0.8s', opacity: 0 }}
+            style={{ animation: 'fade-in-up 0.6s ease-out forwards', animationDelay: '1.4s', opacity: 0 }}
           >
             <Button variant="hero" size="xl" className="group relative overflow-hidden">
               <span className="relative z-10 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 transition-transform group-hover:rotate-12" />
+                <Sparkles className="w-5 h-5 transition-transform group-hover:rotate-12" strokeWidth={2} />
                 Vyložit karty zdarma
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-gold-warm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -154,7 +183,7 @@ export const HeroSection = () => {
           {/* Trust indicators */}
           <div 
             className="flex flex-wrap justify-center gap-8 mt-16 text-mystic-blue/80 text-sm font-body"
-            style={{ animation: 'fade-in-up 0.6s ease-out forwards', animationDelay: '1s', opacity: 0 }}
+            style={{ animation: 'fade-in-up 0.6s ease-out forwards', animationDelay: '1.6s', opacity: 0 }}
           >
             <div className="flex items-center gap-2 glass-card px-4 py-2">
               <div className="relative w-2.5 h-2.5">
@@ -166,13 +195,13 @@ export const HeroSection = () => {
             <div className="flex items-center gap-2 glass-card px-4 py-2">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-gold-warm text-gold-warm" />
+                  <Star key={i} className="w-3.5 h-3.5 fill-gold-warm text-gold-warm" strokeWidth={1.5} />
                 ))}
               </div>
               <span>4.9/5 (2,847 recenzí)</span>
             </div>
             <div className="flex items-center gap-2 glass-card px-4 py-2">
-              <span>🔒</span>
+              <Shield className="w-4 h-4 text-gold-warm" strokeWidth={2} />
               <span>100% diskrétní</span>
             </div>
           </div>

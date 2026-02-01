@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/Navbar';
 import { CosmicBackground } from '@/components/CosmicBackground';
+import { MysticCursor } from '@/components/MysticCursor';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { AdvisorsSection } from '@/components/sections/AdvisorsSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
@@ -8,6 +9,7 @@ import { HoroscopesSection } from '@/components/sections/HoroscopesSection';
 import { WhyUsSection } from '@/components/sections/WhyUsSection';
 import { CardOfDaySection } from '@/components/sections/CardOfDaySection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { NumerologySection } from '@/components/sections/NumerologySection';
 import { BlogSection } from '@/components/sections/BlogSection';
 import { NewsletterSection } from '@/components/sections/NewsletterSection';
 import { Footer } from '@/components/sections/Footer';
@@ -17,6 +19,9 @@ const Index = () => {
     <div className="min-h-screen bg-cosmic-deep overflow-x-hidden relative">
       {/* Global cosmic background with stars, noise, and sacred geometry */}
       <CosmicBackground />
+      
+      {/* Mystic custom cursor */}
+      <MysticCursor />
       
       {/* Content layers */}
       <div className="relative z-10">
@@ -29,6 +34,7 @@ const Index = () => {
         <WhyUsSection />
         <CardOfDaySection />
         <TestimonialsSection />
+        <NumerologySection />
         <BlogSection />
         <NewsletterSection />
         <Footer />
