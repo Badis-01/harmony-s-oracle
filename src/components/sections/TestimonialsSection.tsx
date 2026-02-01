@@ -118,24 +118,24 @@ export const TestimonialsSection = () => {
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
           >
-            {/* Navigation arrows - sides */}
+            {/* Navigation arrows - hidden on mobile, visible on tablet+ */}
             <button
               onClick={prev}
-              className="absolute -left-4 lg:-left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glass-card flex items-center justify-center text-mystic-blue hover:text-gold-warm hover:border-gold-warm/50 transition-all duration-300 hover:scale-110 shadow-lg"
+              className="hidden md:flex absolute -left-4 lg:-left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-12 lg:h-12 rounded-full glass-card items-center justify-center text-mystic-blue hover:text-gold-warm hover:border-gold-warm/50 transition-all duration-300 hover:scale-110 shadow-lg"
               aria-label="Předchozí"
             >
               <ChevronLeft className="w-5 h-5" strokeWidth={2} />
             </button>
             <button
               onClick={next}
-              className="absolute -right-4 lg:-right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glass-card flex items-center justify-center text-mystic-blue hover:text-gold-warm hover:border-gold-warm/50 transition-all duration-300 hover:scale-110 shadow-lg"
+              className="hidden md:flex absolute -right-4 lg:-right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-12 lg:h-12 rounded-full glass-card items-center justify-center text-mystic-blue hover:text-gold-warm hover:border-gold-warm/50 transition-all duration-300 hover:scale-110 shadow-lg"
               aria-label="Další"
             >
               <ChevronRight className="w-5 h-5" strokeWidth={2} />
             </button>
 
-            {/* Carousel container */}
-            <div className="overflow-hidden mx-8">
+            {/* Carousel container - swipeable on mobile */}
+            <div className="overflow-hidden mx-0 md:mx-8 touch-pan-x">
               <div 
                 className="flex transition-transform duration-500 ease-out"
                 style={{ 
@@ -145,7 +145,7 @@ export const TestimonialsSection = () => {
                 {testimonials.map((testimonial) => (
                   <div
                     key={testimonial.id}
-                    className="flex-shrink-0 px-3"
+                    className="flex-shrink-0 px-2 md:px-3"
                     style={{ width: `${100 / visibleCards}%` }}
                   >
                     <div className="glass-card p-6 md:p-8 h-full relative overflow-hidden group hover:border-gold-warm/30 transition-all duration-300">

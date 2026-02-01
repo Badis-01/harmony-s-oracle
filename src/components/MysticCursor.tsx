@@ -5,6 +5,21 @@ export const MysticCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [trail, setTrail] = useState<Array<{ x: number; y: number; id: number }>>([]);
+  const [isTouchDevice, setIsTouchDevice] = useState(true); // Default to true to prevent flash
+
+  // Detect touch device on mount
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      const hasTouch = 'ontouchstart' in window || 
+                       navigator.maxTouchPoints > 0 ||
+                       window.matchMedia('(pointer: coarse)').matches;
+      setIsTouchDevice(hasTouch);
+    };
+    
+    checkTouchDevice();
+    window.addEventListener('resize', checkTouchDevice);
+    return () => window.removeEventListener('resize', checkTouchDevice);
+  }, []);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     setPosition({ x: e.clientX, y: e.clientY });
@@ -18,6 +33,8 @@ export const MysticCursor = () => {
   }, []);
 
   useEffect(() => {
+    if (isTouchDevice) return;
+
     const handleMouseEnter = () => setIsVisible(true);
     const handleMouseLeave = () => setIsVisible(false);
 
@@ -49,24 +66,25 @@ export const MysticCursor = () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       observer.disconnect();
     };
-  }, [handleMouseMove]);
+  }, [handleMouseMove, isTouchDevice]);
 
   // Clean up old trail particles
   useEffect(() => {
+    if (isTouchDevice) return;
     const interval = setInterval(() => {
       setTrail(prev => prev.filter(p => Date.now() - p.id < 200));
     }, 50);
     return () => clearInterval(interval);
-  }, []);
+  }, [isTouchDevice]);
 
-  // Hide custom cursor on touch devices
-  if (typeof window !== 'undefined' && 'ontouchstart' in window) {
+  // Don't render anything on touch devices
+  if (isTouchDevice) {
     return null;
   }
 
   return (
     <>
-      {/* Hide default cursor globally */}
+      {/* Hide default cursor globally - only on non-touch devices */}
       <style>{`
         @media (hover: hover) and (pointer: fine) {
           * {
