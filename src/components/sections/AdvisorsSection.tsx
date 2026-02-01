@@ -218,14 +218,15 @@ export const AdvisorsSection = () => {
         </ScrollReveal>
 
         {/* Advisors Grid - 4 columns x 2 rows, horizontal scroll on mobile */}
-        <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:pb-0 scrollbar-hide">
-          {sortedAdvisors.map((advisor, index) => {
-            const config = statusConfig[advisor.status];
-            
-            return (
-              <ScrollReveal key={advisor.id} delay={index * 80}>
-                <div 
-                  className={`min-w-[280px] sm:min-w-[300px] lg:min-w-0 snap-center glass-card glass-card-hover p-5 h-full flex flex-col relative transition-all duration-500 ${config.cardOpacity} ${config.glowClass}`}
+        <div className="-mx-6 px-6 lg:mx-0 lg:px-0">
+          <div className="flex gap-4 overflow-x-auto pb-6 snap-x snap-mandatory lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:pb-0 scrollbar-hide touch-pan-x">
+            {sortedAdvisors.map((advisor, index) => {
+              const config = statusConfig[advisor.status];
+              
+              return (
+                <ScrollReveal key={advisor.id} delay={index * 80}>
+                  <div 
+                    className={`min-w-[260px] sm:min-w-[280px] lg:min-w-0 snap-center glass-card glass-card-hover p-5 h-full flex flex-col relative transition-all duration-500 ${config.cardOpacity} ${config.glowClass}`}
                 >
                   {/* Status Badge - Top Right */}
                   <div className={`absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-semibold border ${config.badgeClass} flex items-center gap-1.5`}>
@@ -335,9 +336,10 @@ export const AdvisorsSection = () => {
                     </Button>
                   </div>
                 </div>
-              </ScrollReveal>
-            );
-          })}
+                </ScrollReveal>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

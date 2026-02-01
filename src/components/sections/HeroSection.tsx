@@ -51,11 +51,11 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-cosmic-deep/40" />
       </div>
 
-      {/* Floating tarot cards with 3D perspective */}
-      <div className="absolute inset-0 pointer-events-none perspective-1000">
+      {/* Floating tarot cards with 3D perspective - hidden on small mobile */}
+      <div className="absolute inset-0 pointer-events-none perspective-1000 hidden sm:block">
         {/* Left floating card */}
         <div 
-          className="absolute left-[10%] top-[20%] w-32 h-48 preserve-3d"
+          className="absolute left-[5%] md:left-[10%] top-[20%] w-24 md:w-32 h-36 md:h-48 preserve-3d"
           style={{ animation: 'float-card 8s ease-in-out infinite' }}
         >
           <img 
@@ -71,7 +71,7 @@ export const HeroSection = () => {
 
         {/* Right floating card */}
         <div 
-          className="absolute right-[10%] top-[25%] w-28 h-40 preserve-3d"
+          className="absolute right-[5%] md:right-[10%] top-[25%] w-20 md:w-28 h-28 md:h-40 preserve-3d"
           style={{ animation: 'float-card-2 7s ease-in-out infinite 1s' }}
         >
           <img 
@@ -149,7 +149,7 @@ export const HeroSection = () => {
           {/* Main heading with SPLIT-TEXT ANIMATION */}
           <h1 
             ref={headingRef}
-            className="font-heading text-5xl md:text-7xl lg:text-8xl text-moon-white mb-6 leading-tight text-glow-gold"
+            className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-moon-white mb-6 leading-tight text-glow-gold"
           >
             <span className="split-line block">ODKRYJTE SVOU</span>
             <span className="split-line block text-gradient-gold">BUDOUCNOST</span>
