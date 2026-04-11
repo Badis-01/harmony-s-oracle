@@ -1,31 +1,25 @@
-import { useState } from 'react';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { Sparkles } from 'lucide-react';
 
 const zodiacSigns = [
-  { name: 'Beran', symbol: '♈', dates: '21.3 - 19.4', prediction: 'Nové příležitosti na obzoru. Buďte odvážní.' },
-  { name: 'Býk', symbol: '♉', dates: '20.4 - 20.5', prediction: 'Finance se stabilizují. Čas na investice.' },
-  { name: 'Blíženci', symbol: '♊', dates: '21.5 - 20.6', prediction: 'Komunikace přinese úspěch. Buďte otevření.' },
-  { name: 'Rak', symbol: '♋', dates: '21.6 - 22.7', prediction: 'Rodinné záležitosti vyžadují pozornost.' },
-  { name: 'Lev', symbol: '♌', dates: '23.7 - 22.8', prediction: 'Vaše kreativita zazáří. Využijte ji.' },
-  { name: 'Panna', symbol: '♍', dates: '23.8 - 22.9', prediction: 'Detaily rozhodnou o úspěchu.' },
-  { name: 'Váhy', symbol: '♎', dates: '23.9 - 22.10', prediction: 'Harmonie ve vztazích. Láska kvete.' },
-  { name: 'Štír', symbol: '♏', dates: '23.10 - 21.11', prediction: 'Transformace přináší nové začátky.' },
-  { name: 'Střelec', symbol: '♐', dates: '22.11 - 21.12', prediction: 'Cestování rozšíří vaše obzory.' },
-  { name: 'Kozoroh', symbol: '♑', dates: '22.12 - 19.1', prediction: 'Kariérní postup je na dosah.' },
-  { name: 'Vodnář', symbol: '♒', dates: '20.1 - 18.2', prediction: 'Inovativní nápady přinesou uznání.' },
-  { name: 'Ryby', symbol: '♓', dates: '19.2 - 20.3', prediction: 'Intuice vás povede správným směrem.' },
+  { name: 'Beran', symbol: '♈', dates: '21.3 - 19.4' },
+  { name: 'Býk', symbol: '♉', dates: '20.4 - 20.5' },
+  { name: 'Blíženci', symbol: '♊', dates: '21.5 - 20.6' },
+  { name: 'Rak', symbol: '♋', dates: '21.6 - 22.7' },
+  { name: 'Lev', symbol: '♌', dates: '23.7 - 22.8' },
+  { name: 'Panna', symbol: '♍', dates: '23.8 - 22.9' },
+  { name: 'Váhy', symbol: '♎', dates: '23.9 - 22.10' },
+  { name: 'Štír', symbol: '♏', dates: '23.10 - 21.11' },
+  { name: 'Střelec', symbol: '♐', dates: '22.11 - 21.12' },
+  { name: 'Kozoroh', symbol: '♑', dates: '22.12 - 19.1' },
+  { name: 'Vodnář', symbol: '♒', dates: '20.1 - 18.2' },
+  { name: 'Ryby', symbol: '♓', dates: '19.2 - 20.3' },
 ];
 
 export const HoroscopesSection = () => {
-  const [selectedSign, setSelectedSign] = useState<number | null>(null);
-
-  // Circle layout: 12 signs evenly distributed, starting from top (-90deg)
-  const radius = 42; // percentage of container
+  const radius = 42;
 
   return (
     <section className="relative py-24 overflow-hidden section-vignette">
-      {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-purple-electric/8 rounded-full blur-[200px]" />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -36,24 +30,23 @@ export const HoroscopesSection = () => {
               Denní <span className="text-gradient-purple text-glow-purple">horoskopy</span>
             </h2>
             <p className="font-body text-mystic-blue max-w-2xl mx-auto text-lg">
-              Klikněte na své znamení a zjistěte, co vám hvězdy přináší
+              Vyberte své znamení a zjistěte, co vám hvězdy přináší
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Zodiac Wheel */}
         <ScrollReveal>
-          <div className="relative w-full max-w-[600px] md:max-w-[700px] aspect-square mx-auto">
-            {/* Decorative rings */}
+          <div className="relative w-full max-w-[550px] md:max-w-[650px] aspect-square mx-auto">
+            {/* Decorative SVG rings */}
+            <svg className="absolute inset-0 w-full h-full animate-[spin_120s_linear_infinite]" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="46" fill="none" stroke="hsl(270 90% 68% / 0.1)" strokeWidth="0.2" />
+              <circle cx="50" cy="50" r={radius} fill="none" stroke="hsl(270 90% 68% / 0.15)" strokeWidth="0.3" strokeDasharray="2 1.5" />
+              <circle cx="50" cy="50" r="34" fill="none" stroke="hsl(270 90% 68% / 0.07)" strokeWidth="0.2" />
+            </svg>
+
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-              {/* Outer ring */}
-              <circle cx="50" cy="50" r="46" fill="none" stroke="hsl(270 90% 68% / 0.12)" strokeWidth="0.3" />
-              {/* Main ring where signs sit */}
-              <circle cx="50" cy="50" r={radius} fill="none" stroke="hsl(270 90% 68% / 0.2)" strokeWidth="0.4" strokeDasharray="1.5 1" />
-              {/* Inner decorative ring */}
-              <circle cx="50" cy="50" r="34" fill="none" stroke="hsl(270 90% 68% / 0.08)" strokeWidth="0.3" />
-              <circle cx="50" cy="50" r="24" fill="none" stroke="hsl(270 90% 68% / 0.06)" strokeWidth="0.2" />
-              {/* Cross lines */}
+              <circle cx="50" cy="50" r="24" fill="none" stroke="hsl(270 90% 68% / 0.05)" strokeWidth="0.15" />
+              {/* Radial lines */}
               {[0, 30, 60, 90, 120, 150].map((deg) => {
                 const rad = (deg * Math.PI) / 180;
                 return (
@@ -63,68 +56,45 @@ export const HoroscopesSection = () => {
                     y1={50 + 24 * Math.sin(rad)}
                     x2={50 + 46 * Math.cos(rad)}
                     y2={50 + 46 * Math.sin(rad)}
-                    stroke="hsl(270 90% 68% / 0.06)"
-                    strokeWidth="0.15"
+                    stroke="hsl(270 90% 68% / 0.05)"
+                    strokeWidth="0.12"
                   />
                 );
               })}
             </svg>
 
-            {/* Center content */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-              {selectedSign !== null ? (
-                <div className="glass-card px-6 py-5 md:px-10 md:py-6 max-w-[280px] md:max-w-[320px] text-center animate-fade-in border border-purple-electric/20">
-                  <h3 className="font-heading text-lg md:text-xl text-purple-electric mb-1">
-                    {zodiacSigns[selectedSign].symbol} {zodiacSigns[selectedSign].name}
-                  </h3>
-                  <p className="font-body text-[11px] text-mystic-blue/60 mb-3">
-                    {zodiacSigns[selectedSign].dates}
-                  </p>
-                  <p className="font-body text-sm text-moon-white/90 leading-relaxed">
-                    {zodiacSigns[selectedSign].prediction}
-                  </p>
-                </div>
-              ) : (
-                <div className="glass-card px-8 py-6 md:px-12 md:py-8 text-center border border-purple-electric/10">
-                  <Sparkles className="w-8 h-8 text-gold-warm mx-auto mb-3" strokeWidth={1.5} />
-                  <p className="font-body text-sm text-mystic-blue">
-                    Vyberte své znamení
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* Zodiac sign nodes on the circle */}
+            {/* Zodiac sign nodes */}
             {zodiacSigns.map((sign, index) => {
               const angle = ((index * 360) / 12 - 90) * (Math.PI / 180);
               const x = 50 + radius * Math.cos(angle);
               const y = 50 + radius * Math.sin(angle);
-              const isSelected = selectedSign === index;
 
               return (
-                <button
+                <a
                   key={index}
-                  className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center transition-all duration-300 cursor-pointer group
-                    ${isSelected
-                      ? 'bg-purple-electric/30 border-2 border-purple-electric scale-110 shadow-[0_0_20px_hsl(270_90%_68%/0.4)]'
-                      : 'bg-cosmic-surface/80 border border-purple-electric/20 hover:border-purple-electric/50 hover:bg-purple-electric/15 hover:scale-110'
-                    }`}
+                  href="#"
+                  className="absolute z-10 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5 group no-underline"
                   style={{
                     left: `${x}%`,
                     top: `${y}%`,
                   }}
-                  onClick={() => setSelectedSign(isSelected ? null : index)}
                   aria-label={sign.name}
                 >
-                  <span className={`text-xl md:text-2xl transition-all duration-300 ${isSelected ? 'text-purple-electric' : 'text-purple-electric/70 group-hover:text-purple-electric'}`}>
-                    {sign.symbol}
-                  </span>
+                  {/* Circle node */}
+                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 bg-cosmic-surface/80 border border-purple-electric/25 group-hover:border-purple-electric/60 group-hover:bg-purple-electric/15 group-hover:scale-110 group-hover:shadow-[0_0_24px_hsl(270_90%_68%/0.35)]">
+                    <span
+                      className="text-2xl md:text-[28px] text-purple-electric/80 group-hover:text-purple-electric transition-colors duration-300"
+                      style={{ fontFamily: "'Cinzel', 'Noto Sans Symbols 2', serif", fontVariantEmoji: 'text' } as React.CSSProperties}
+                    >
+                      {sign.symbol}
+                    </span>
+                  </div>
 
-                  {/* Tooltip name on hover */}
-                  <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 font-body text-[10px] text-mystic-blue whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  {/* Name label */}
+                  <span className="font-heading text-[10px] md:text-xs text-mystic-blue/70 group-hover:text-moon-white transition-colors duration-300 whitespace-nowrap">
                     {sign.name}
                   </span>
-                </button>
+                </a>
               );
             })}
           </div>
