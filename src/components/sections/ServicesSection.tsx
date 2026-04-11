@@ -1,27 +1,27 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { Sparkles, Moon, Star, Compass, Eye, Flame, CloudMoon, Brain, Heart, Zap } from 'lucide-react';
+
+import tarotImg from '@/assets/techniques/tarot.jpg';
+import numerologieImg from '@/assets/techniques/numerologie.jpg';
+import astrologieImg from '@/assets/techniques/astrologie.jpg';
+import runyImg from '@/assets/techniques/runy.jpg';
+import kristalovaKouleImg from '@/assets/techniques/kristalova-koule.jpg';
+import svickovaMagieImg from '@/assets/techniques/svickova-magie.jpg';
+import vykladSnuImg from '@/assets/techniques/vyklad-snu.jpg';
+import regreseImg from '@/assets/techniques/regrese.jpg';
+import channelingImg from '@/assets/techniques/channeling.jpg';
+import reikiImg from '@/assets/techniques/reiki.jpg';
 
 const services = [
-  { icon: Sparkles, title: 'Tarotové karty', description: 'Klasické výklady pro jasné odpovědi' },
-  { icon: Star, title: 'Numerologie', description: 'Síla čísel ve vašem životě' },
-  { icon: Moon, title: 'Astrologie', description: 'Hvězdy odhalí váš osud' },
-  { icon: Compass, title: 'Runy', description: 'Prastaré symboly moudrosti' },
-  { icon: Eye, title: 'Křišťálová koule', description: 'Nahlédněte do budoucnosti' },
-  { icon: Flame, title: 'Svíčková magie', description: 'Rituály pro splnění přání' },
-  // Duplicates for seamless marquee
-  { icon: Sparkles, title: 'Tarotové karty', description: 'Klasické výklady pro jasné odpovědi' },
-  { icon: Star, title: 'Numerologie', description: 'Síla čísel ve vašem životě' },
-  { icon: Moon, title: 'Astrologie', description: 'Hvězdy odhalí váš osud' },
-  { icon: Compass, title: 'Runy', description: 'Prastaré symboly moudrosti' },
-  { icon: Eye, title: 'Křišťálová koule', description: 'Nahlédněte do budoucnosti' },
-  { icon: Flame, title: 'Svíčková magie', description: 'Rituály pro splnění přání' },
-];
-
-const bentoServices = [
-  { title: 'Výklad snů', icon: CloudMoon, color: 'from-indigo-500/20' },
-  { title: 'Regrese', icon: Brain, color: 'from-purple-500/20' },
-  { title: 'Channeling', icon: Zap, color: 'from-amber-500/20' },
-  { title: 'Reiki', icon: Heart, color: 'from-emerald-500/20' },
+  { title: 'Tarotové karty', description: 'Klasické výklady pro jasné odpovědi', image: tarotImg },
+  { title: 'Numerologie', description: 'Síla čísel ve vašem životě', image: numerologieImg },
+  { title: 'Astrologie', description: 'Hvězdy odhalí váš osud', image: astrologieImg },
+  { title: 'Runy', description: 'Prastaré symboly moudrosti', image: runyImg },
+  { title: 'Křišťálová koule', description: 'Nahlédněte do budoucnosti', image: kristalovaKouleImg },
+  { title: 'Svíčková magie', description: 'Rituály pro splnění přání', image: svickovaMagieImg },
+  { title: 'Výklad snů', description: 'Odhalte skrytý význam vašich snů', image: vykladSnuImg },
+  { title: 'Regrese', description: 'Cesta do minulých životů', image: regreseImg },
+  { title: 'Channeling', description: 'Spojení s vyššími dimenzemi', image: channelingImg },
+  { title: 'Reiki', description: 'Léčivá energie pro tělo i duši', image: reikiImg },
 ];
 
 export const ServicesSection = () => {
@@ -48,48 +48,43 @@ export const ServicesSection = () => {
       <ScrollReveal delay={200}>
         <div className="marquee-container py-8">
           <div className="marquee-content">
-            {services.map((service, index) => (
-              <div 
-                key={index} 
-                className="glass-card glass-card-hover p-6 min-w-[280px] cursor-pointer group cosmic-glow"
+            {/* Original + duplicate for seamless loop */}
+            {[...services, ...services].map((service, index) => (
+              <div
+                key={index}
+                className="relative min-w-[280px] h-[380px] rounded-2xl overflow-hidden cursor-pointer group shrink-0"
               >
-                <div className="flex flex-col items-center text-center">
-                  {/* Icon with glow */}
-                  <div className="relative mb-4">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cosmic-glow to-cosmic-surface flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <service.icon className="w-8 h-8 text-gold-warm" strokeWidth={1.5} />
-                    </div>
-                    {/* Glow effect */}
-                    <div className="absolute inset-0 w-16 h-16 rounded-2xl bg-gold-warm/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <h3 className="font-heading text-lg text-moon-white mb-2 group-hover:text-gold-warm transition-colors duration-300">
+                {/* Full background image */}
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+
+                {/* Dark gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-cosmic-deep via-cosmic-deep/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+
+                {/* Gold border on hover */}
+                <div className="absolute inset-0 rounded-2xl border border-moon-white/10 group-hover:border-gold-warm/50 transition-colors duration-300" />
+
+                {/* Content at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end">
+                  <h3 className="font-heading text-xl text-moon-white mb-2 group-hover:text-gold-warm transition-colors duration-300">
                     {service.title}
                   </h3>
-                  <p className="font-body text-sm text-mystic-blue leading-relaxed">
+                  <p className="font-body text-sm text-mystic-blue leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-300">
                     {service.description}
                   </p>
                 </div>
+
+                {/* Subtle top glow on hover */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold-warm to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             ))}
           </div>
         </div>
       </ScrollReveal>
-
-      {/* Bento Grid for additional services - with Lucide icons */}
-      <div className="container mx-auto px-6 relative z-10 mt-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {bentoServices.map((item, index) => (
-            <ScrollReveal key={index} delay={300 + index * 50}>
-              <div className={`glass-card p-6 text-center cursor-pointer group hover:border-gold-warm/50 transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br ${item.color} to-transparent`}>
-                <div className="relative inline-block mb-3">
-                  <item.icon className="w-8 h-8 text-gold-warm group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
-                </div>
-                <span className="font-heading text-sm text-moon-white block">{item.title}</span>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
     </section>
   );
 };
