@@ -384,53 +384,53 @@ export const MysticSymbols = () => {
     >
       {/* Mezi Hero a Advisors */}
       <ElaborateMandala
-        className="absolute text-moon-white opacity-[0.55] w-[700px] h-[700px] -left-40 top-[600px]"
+        className="absolute text-moon-white opacity-[0.3] w-[700px] h-[700px] -left-40 top-[600px]"
         style={{ animation: 'rotate-slow 220s linear infinite' }}
       />
 
       {/* Konstelace přes celou šířku */}
       <BigConstellation
-        className="absolute text-moon-white opacity-[0.5] w-[900px] h-[480px] -right-20 top-[1400px]"
+        className="absolute text-moon-white opacity-[0.3] w-[900px] h-[480px] -right-20 top-[1400px]"
       />
 
-      {/* Sri Yantra */}
-      <SriYantra
-        className="absolute text-moon-white opacity-[0.5] w-[680px] h-[680px] -right-32 top-[2200px]"
+      {/* Nebeská sféra (nahradila Sri Yantru — kulatější, ne hranatá) */}
+      <CelestialSphere
+        className="absolute text-moon-white opacity-[0.3] w-[680px] h-[680px] -right-32 top-[2200px]"
         style={{ animation: 'rotate-slow 320s linear infinite reverse' }}
       />
 
       {/* Květ života */}
       <FlowerOfLife
-        className="absolute text-moon-white opacity-[0.55] w-[750px] h-[750px] -left-48 top-[3100px]"
+        className="absolute text-moon-white opacity-[0.3] w-[750px] h-[750px] -left-48 top-[3100px]"
         style={{ animation: 'rotate-slow 280s linear infinite' }}
       />
 
       {/* Zodiakální kruh */}
       <ZodiacWheel
-        className="absolute text-moon-white opacity-[0.5] w-[720px] h-[720px] -right-40 top-[4000px]"
+        className="absolute text-moon-white opacity-[0.3] w-[720px] h-[720px] -right-40 top-[4000px]"
         style={{ animation: 'rotate-slow 360s linear infinite' }}
       />
 
       {/* Metatronova kostka */}
       <MetatronCube
-        className="absolute text-moon-white opacity-[0.55] w-[700px] h-[700px] -left-44 top-[4900px]"
+        className="absolute text-moon-white opacity-[0.3] w-[700px] h-[700px] -left-44 top-[4900px]"
         style={{ animation: 'rotate-slow 300s linear infinite reverse' }}
       />
 
       {/* Velké slunce */}
       <ElaborateSun
-        className="absolute text-moon-white opacity-[0.5] w-[660px] h-[660px] -right-36 top-[5800px]"
+        className="absolute text-moon-white opacity-[0.3] w-[660px] h-[660px] -right-36 top-[5800px]"
         style={{ animation: 'rotate-slow 240s linear infinite' }}
       />
 
       {/* Druhá konstelace */}
       <BigConstellation
-        className="absolute text-moon-white opacity-[0.45] w-[850px] h-[450px] -left-24 top-[6700px]"
+        className="absolute text-moon-white opacity-[0.3] w-[850px] h-[450px] -left-24 top-[6700px]"
       />
 
       {/* Druhá mandala */}
       <ElaborateMandala
-        className="absolute text-moon-white opacity-[0.5] w-[640px] h-[640px] -right-32 top-[7400px]"
+        className="absolute text-moon-white opacity-[0.3] w-[640px] h-[640px] -right-32 top-[7400px]"
         style={{ animation: 'rotate-slow 260s linear infinite reverse' }}
       />
     </div>
