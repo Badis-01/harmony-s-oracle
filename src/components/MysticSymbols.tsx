@@ -88,59 +88,70 @@ const ElaborateMandala = ({ className, style }: SymbolProps) => (
   </svg>
 );
 
-// Sri Yantra (zjednodušená, ale propracovaná)
-const SriYantra = ({ className, style }: SymbolProps) => (
+// Nebeská sféra — koncentrické kruhy s orbitálními body (kosmické, kulaté)
+const CelestialSphere = ({ className, style }: SymbolProps) => (
   <svg viewBox="0 0 400 400" className={className} style={style} fill="none" stroke="currentColor">
-    {/* Vnější čtverec s "branami" */}
-    <rect x="20" y="20" width="360" height="360" strokeWidth="0.7" />
-    <rect x="35" y="35" width="330" height="330" strokeWidth="0.4" />
+    {/* Vnější jemné kruhy */}
+    <circle cx="200" cy="200" r="195" strokeWidth="0.8" />
+    <circle cx="200" cy="200" r="180" strokeWidth="0.4" strokeDasharray="1 5" />
+    <circle cx="200" cy="200" r="160" strokeWidth="0.5" />
 
-    {/* Brány — T tvary na 4 stranách */}
-    {[
-      { x: 200, y: 20, r: 0 },
-      { x: 380, y: 200, r: 90 },
-      { x: 200, y: 380, r: 180 },
-      { x: 20, y: 200, r: 270 },
-    ].map((g, i) => (
-      <g key={i} transform={`translate(${g.x} ${g.y}) rotate(${g.r})`}>
-        <path d="M-30,0 L-30,-15 L30,-15 L30,0" strokeWidth="0.6" />
-        <path d="M-15,-15 L-15,-30 L15,-30 L15,-15" strokeWidth="0.6" />
-      </g>
-    ))}
-
-    {/* 16-petalový lotos */}
-    {Array.from({ length: 16 }, (_, i) => (
-      <g key={`l16-${i}`} transform={`rotate(${i * 22.5} 200 200)`}>
-        <path d="M200,60 Q210,100 200,140 Q190,100 200,60 Z" strokeWidth="0.5" />
-      </g>
-    ))}
-
-    {/* 8-petalový lotos */}
-    {Array.from({ length: 8 }, (_, i) => (
-      <g key={`l8-${i}`} transform={`rotate(${i * 45} 200 200)`}>
-        <path d="M200,95 Q215,135 200,165 Q185,135 200,95 Z" strokeWidth="0.6" />
-      </g>
+    {/* Eliptické orbity — různé sklony */}
+    {[0, 30, 60, 90, 120, 150].map((rot, i) => (
+      <ellipse
+        key={`orb-${i}`}
+        cx="200"
+        cy="200"
+        rx="150"
+        ry="55"
+        strokeWidth="0.6"
+        transform={`rotate(${rot} 200 200)`}
+      />
     ))}
 
     {/* Vnitřní kruhy */}
-    <circle cx="200" cy="200" r="140" strokeWidth="0.6" />
-    <circle cx="200" cy="200" r="105" strokeWidth="0.5" />
-    <circle cx="200" cy="200" r="78" strokeWidth="0.6" />
+    <circle cx="200" cy="200" r="90" strokeWidth="0.6" />
+    <circle cx="200" cy="200" r="60" strokeWidth="0.5" />
+    <circle cx="200" cy="200" r="35" strokeWidth="0.7" />
 
-    {/* 9 propletených trojúhelníků (4 nahoru, 5 dolů — Sri Yantra) */}
-    <polygon points="200,130 285,255 115,255" strokeWidth="0.7" />
-    <polygon points="200,150 270,245 130,245" strokeWidth="0.6" />
-    <polygon points="200,170 255,235 145,235" strokeWidth="0.5" />
-    <polygon points="200,190 240,225 160,225" strokeWidth="0.5" />
+    {/* Centrální slunce */}
+    <circle cx="200" cy="200" r="14" fill="currentColor" />
+    <circle cx="200" cy="200" r="22" strokeWidth="0.5" />
 
-    <polygon points="200,270 115,145 285,145" strokeWidth="0.7" />
-    <polygon points="200,255 130,160 270,160" strokeWidth="0.6" />
-    <polygon points="200,240 145,175 255,175" strokeWidth="0.5" />
-    <polygon points="200,225 160,190 240,190" strokeWidth="0.5" />
-    <polygon points="200,210 175,195 225,195" strokeWidth="0.5" />
+    {/* Krátké paprsky ze středu */}
+    {Array.from({ length: 24 }, (_, i) => {
+      const a = (i * 15 * Math.PI) / 180;
+      return (
+        <line
+          key={`ray-${i}`}
+          x1={200 + 26 * Math.cos(a)}
+          y1={200 + 26 * Math.sin(a)}
+          x2={200 + 34 * Math.cos(a)}
+          y2={200 + 34 * Math.sin(a)}
+          strokeWidth="0.5"
+        />
+      );
+    })}
 
-    {/* Bindu — centrální bod */}
-    <circle cx="200" cy="200" r="4" fill="currentColor" />
+    {/* Planety / body na orbitách */}
+    {[
+      [350, 200], [50, 200], [200, 50], [200, 350],
+      [310, 110], [90, 290], [310, 290], [90, 110],
+      [275, 145], [125, 255], [275, 255], [125, 145],
+    ].map(([x, y], i) => (
+      <g key={`p-${i}`}>
+        <circle cx={x} cy={y} r="8" fill="currentColor" opacity="0.2" />
+        <circle cx={x} cy={y} r="3.5" fill="currentColor" />
+      </g>
+    ))}
+
+    {/* Drobné hvězdy v pozadí */}
+    {[
+      [60, 60], [340, 80], [70, 340], [330, 320],
+      [200, 30], [30, 200], [370, 200], [200, 370],
+    ].map(([x, y], i) => (
+      <circle key={`s-${i}`} cx={x} cy={y} r="1.5" fill="currentColor" />
+    ))}
   </svg>
 );
 
