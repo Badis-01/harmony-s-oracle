@@ -24,11 +24,10 @@ const Index = () => {
       {/* Mystic custom cursor */}
       <MysticCursor />
 
-      {/* Decentní magické symboly mezi sekcemi */}
-      <MysticSymbols />
-      
       {/* Content layers */}
       <div className="relative z-10">
+        {/* Decentní magické symboly mezi sekcemi (uvnitř content vrstvy, ale za textem) */}
+        <MysticSymbols />
         <Navbar />
         <HeroSection />
         <AdvisorsSection />
