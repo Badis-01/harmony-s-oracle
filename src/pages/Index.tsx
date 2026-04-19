@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/Navbar';
 import { CosmicBackground } from '@/components/CosmicBackground';
+import { MysticSymbols } from '@/components/MysticSymbols';
 import { MysticCursor } from '@/components/MysticCursor';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { AdvisorsSection } from '@/components/sections/AdvisorsSection';
@@ -22,6 +23,9 @@ const Index = () => {
       
       {/* Mystic custom cursor */}
       <MysticCursor />
+
+      {/* Decentní magické symboly mezi sekcemi */}
+      <MysticSymbols />
       
       {/* Content layers */}
       <div className="relative z-10">
