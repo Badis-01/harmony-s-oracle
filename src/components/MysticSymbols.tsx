@@ -166,75 +166,67 @@ const Constellation = ({ className, style }: SymbolProps) => {
 export const MysticSymbols = () => {
   return (
     <div
-      className="absolute inset-0 pointer-events-none overflow-hidden"
+      className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block"
       aria-hidden="true"
       style={{ zIndex: 0 }}
     >
       {/* ~700px — mezi Hero a Advisors */}
       <Pentagram
-        className="absolute text-gold-warm opacity-[0.05] w-[280px] h-[280px] -left-16 top-[700px]"
+        className="absolute text-gold-warm opacity-[0.15] w-[280px] h-[280px] -left-16 top-[700px]"
         style={{ animation: 'rotate-slow 180s linear infinite' }}
       />
 
-      {/* ~1400px — vedle Advisors */}
       <Constellation
-        className="absolute text-mystic-blue opacity-[0.08] w-[320px] h-[128px] right-8 top-[1500px]"
+        className="absolute text-mystic-blue opacity-[0.22] w-[320px] h-[128px] right-8 top-[1500px]"
       />
 
-      {/* ~2200px — mezi How It Works a Services */}
       <Hexagram
-        className="absolute text-purple-electric opacity-[0.05] w-[240px] h-[240px] right-[8%] top-[2300px]"
+        className="absolute text-purple-electric opacity-[0.15] w-[240px] h-[240px] right-[8%] top-[2300px]"
         style={{ animation: 'rotate-slow 200s linear infinite reverse' }}
       />
       <MoonPhases
-        className="absolute text-gold-warm opacity-[0.06] w-[360px] h-[90px] left-[10%] top-[2600px]"
+        className="absolute text-gold-warm opacity-[0.18] w-[360px] h-[90px] left-[10%] top-[2600px]"
       />
 
-      {/* ~3200px — vedle Services */}
       <Sun
-        className="absolute text-gold-warm opacity-[0.05] w-[260px] h-[260px] -right-12 top-[3300px]"
+        className="absolute text-gold-warm opacity-[0.15] w-[260px] h-[260px] -right-12 top-[3300px]"
         style={{ animation: 'rotate-slow 240s linear infinite' }}
       />
 
-      {/* ~4000px — mezi Horoscopes a Why Us */}
       <EyeOfProvidence
-        className="absolute text-purple-electric opacity-[0.05] w-[220px] h-[220px] left-[6%] top-[4100px]"
+        className="absolute text-purple-electric opacity-[0.15] w-[220px] h-[220px] left-[6%] top-[4100px]"
       />
       <Constellation
-        className="absolute text-mystic-blue opacity-[0.07] w-[280px] h-[112px] right-[12%] top-[4400px]"
+        className="absolute text-mystic-blue opacity-[0.20] w-[280px] h-[112px] right-[12%] top-[4400px]"
       />
 
-      {/* ~4900px — okolo Card of Day */}
       <SacredCircle
-        className="absolute text-gold-warm opacity-[0.04] w-[340px] h-[340px] -left-20 top-[5000px]"
+        className="absolute text-gold-warm opacity-[0.13] w-[340px] h-[340px] -left-20 top-[5000px]"
         style={{ animation: 'rotate-slow 220s linear infinite' }}
       />
 
-      {/* ~5600px — mezi Testimonials a Numerology */}
       <Elements
-        className="absolute text-purple-electric opacity-[0.06] w-[300px] h-[90px] right-[8%] top-[5700px]"
+        className="absolute text-purple-electric opacity-[0.18] w-[300px] h-[90px] right-[8%] top-[5700px]"
       />
       <Pentagram
-        className="absolute text-gold-warm opacity-[0.04] w-[200px] h-[200px] left-[4%] top-[6000px]"
+        className="absolute text-gold-warm opacity-[0.13] w-[200px] h-[200px] left-[4%] top-[6000px]"
         style={{ animation: 'rotate-slow 160s linear infinite reverse' }}
       />
 
-      {/* ~6500px — okolo Blog */}
       <Hexagram
-        className="absolute text-mystic-blue opacity-[0.05] w-[260px] h-[260px] -right-10 top-[6700px]"
+        className="absolute text-mystic-blue opacity-[0.15] w-[260px] h-[260px] -right-10 top-[6700px]"
         style={{ animation: 'rotate-slow 200s linear infinite' }}
       />
       <MoonPhases
-        className="absolute text-gold-warm opacity-[0.05] w-[320px] h-[80px] left-[12%] top-[7000px]"
+        className="absolute text-gold-warm opacity-[0.15] w-[320px] h-[80px] left-[12%] top-[7000px]"
       />
 
-      {/* ~7400px — okolo Newsletter */}
       <Sun
-        className="absolute text-gold-warm opacity-[0.04] w-[220px] h-[220px] left-[6%] top-[7500px]"
+        className="absolute text-gold-warm opacity-[0.13] w-[220px] h-[220px] left-[6%] top-[7500px]"
         style={{ animation: 'rotate-slow 260s linear infinite reverse' }}
       />
       <Constellation
-        className="absolute text-mystic-blue opacity-[0.07] w-[300px] h-[120px] right-[6%] top-[7700px]"
+        className="absolute text-mystic-blue opacity-[0.20] w-[300px] h-[120px] right-[6%] top-[7700px]"
       />
     </div>
   );
